@@ -12,14 +12,21 @@ import { useState, useMemo } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
+let ArrayOfLatLng = [];
+
 export default function Home() {
   const [latlng, setLatLang] = useState({
     lat: 23.685,
     lng: 90.3563,
   });
 
+  const [marker, setMarker] = useState({
+    lat: 23.685,
+    lng: 90.3563,
+  });
+
   useMemo(() => {
-    setLatLang(latlng);
+    setMarker(latlng);
   }, [latlng]);
 
   const { isLoaded } = useJsApiLoader({
@@ -43,13 +50,26 @@ export default function Home() {
         <GoogleMap
           onClick={(e) => {
             setLatLang(e.latLng.toJSON());
-            console.log(latlng);
+            ArrayOfLatLng.push(latlng);
+            if (ArrayOfLatLng.length == 1) {
+              console.log(latlng);
+            } else {
+              console.log(ArrayOfLatLng);
+            }
           }}
           zoom={10}
           center={latlng}
           mapContainerClassName="map-container"
         >
-          <Marker position={latlng} />
+          {ArrayOfLatLng.map((pos, index) => (
+            <Marker
+              key={index}
+              position={pos}
+              visible
+              zIndex={60}
+              opacity={1.0}
+            />
+          ))}
         </GoogleMap>
         <pre
           style={{
