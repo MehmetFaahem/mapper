@@ -42,8 +42,8 @@ export default function Payment() {
             <h1>Step 5/7</h1>
             <h2>Contract Details</h2>
             <h3>
-              Please fill in the following details below... there'll be some
-              other details here later on...
+              Please fill in the following details below... there&apos;ll be
+              some other details here later on...
             </h3>
           </div>
         </div>

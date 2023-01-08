@@ -148,7 +148,7 @@ body {
     height: 2px;
   }
   .tall-border {
-    @include taller(60%, 195px, 200px);
+    @include taller(58%, 195px, 200px);
   }
   .tall-border-two {
     @include taller(100%, 278px, 0px);
