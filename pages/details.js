@@ -172,6 +172,9 @@ export default function Payment() {
                           elem[i].style.color = "black";
                           elem[i].style.backgroundColor = "white";
                         }
+                        const sel = document.querySelectorAll("select");
+                        sel[0].style.backgroundColor = "white";
+                        sel[0].style.color = "black";
                         elem[index].style.backgroundColor = "black";
                         elem[index].style.color = "white";
                       }}
@@ -183,9 +186,19 @@ export default function Payment() {
                   <div className="toggler">
                     <select
                       value={inputted.duration}
-                      onChange={(e) =>
-                        setInputted({ ...inputted, duration: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const elem = document.querySelectorAll(".toggler");
+                        for (let i = 0; i < elem.length; i++) {
+                          elem[i].style.color = "black";
+                          elem[i].style.backgroundColor = "white";
+                          elem[3].style.color = "white";
+                          elem[3].style.backgroundColor = "black";
+                          const sel = document.querySelectorAll("select");
+                          sel[0].style.backgroundColor = "black";
+                          sel[0].style.color = "white";
+                        }
+                        setInputted({ ...inputted, duration: e.target.value });
+                      }}
                     >
                       <option value="Other">other</option>
                       <option value="18">18 months</option>
@@ -355,6 +368,9 @@ export default function Payment() {
                           elem[i].style.color = "black";
                           elem[i].style.backgroundColor = "white";
                         }
+                        const sel = document.querySelectorAll("select");
+                        sel[1].style.backgroundColor = "white";
+                        sel[1].style.color = "black";
                         elem[index].style.backgroundColor = "black";
                         elem[index].style.color = "white";
                       }}
@@ -367,12 +383,22 @@ export default function Payment() {
                   <div className="toggler-two">
                     <select
                       value={inputted.minimumLockInPeriod}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        const elem = document.querySelectorAll(".toggler-two");
+                        for (let i = 0; i < elem.length; i++) {
+                          elem[i].style.color = "black";
+                          elem[i].style.backgroundColor = "white";
+                          elem[3].style.color = "white";
+                          elem[3].style.backgroundColor = "black";
+                          const sel = document.querySelectorAll("select");
+                          sel[1].style.backgroundColor = "black";
+                          sel[1].style.color = "white";
+                        }
                         setInputted({
                           ...inputted,
                           minimumLockInPeriod: e.target.value,
-                        })
-                      }
+                        });
+                      }}
                     >
                       <option value="other">other</option>
                       <option value="4">4</option>
