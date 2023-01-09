@@ -80,8 +80,13 @@ input[value="0000-00-00"]::-webkit-datetime-edit {
       display: flex;
       place-items: center;
       place-content: center;
+      background-color: #f7f8fa;
       margin-right: 20px;
       cursor: pointer;
+    }
+
+    .toggler-two {
+      @extend .toggler;
     }
   }
 }

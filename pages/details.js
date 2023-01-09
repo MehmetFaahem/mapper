@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import WestIcon from "@mui/icons-material/West";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import HouseSidingIcon from "@mui/icons-material/HouseSiding";
@@ -19,9 +19,22 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 export default function Payment() {
   const [alignment, setAlignment] = React.useState("web");
 
+  const [inputted, setInputted] = useState({
+    duration: "",
+    startDate: "",
+    rentAmount: "",
+    refundableDeposit: "",
+    nonRefundableDeposit: "",
+    minimumLockInPeriod: "",
+    rentDay: "",
+    noticePeriod: "",
+    miscellenous: "",
+  });
+
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
+
   return (
     <div className="main-container">
       <div className="header-container">
@@ -149,13 +162,33 @@ export default function Payment() {
               <div>
                 <p>Agreement Duration (In months) </p>
                 <div className="toggentainer">
-                  <div className="toggler">6 months</div>
-                  <div className="toggler">11 months</div>
-                  <div className="toggler">12 months</div>
+                  {["6", "11", "12"].map((val, index) => (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        setInputted({ ...inputted, duration: val });
+                        const elem = document.querySelectorAll(".toggler");
+                        for (let i = 0; i < elem.length; i++) {
+                          elem[i].style.color = "black";
+                          elem[i].style.backgroundColor = "white";
+                        }
+                        elem[index].style.backgroundColor = "black";
+                        elem[index].style.color = "white";
+                      }}
+                      className="toggler"
+                    >
+                      {val} months
+                    </div>
+                  ))}
                   <div className="toggler">
-                    <select>
-                      <option>other</option>
-                      <option>18 months</option>
+                    <select
+                      value={inputted.duration}
+                      onChange={(e) =>
+                        setInputted({ ...inputted, duration: e.target.value })
+                      }
+                    >
+                      <option value="Other">other</option>
+                      <option value="18">18 months</option>
                     </select>
                   </div>
                 </div>
@@ -185,6 +218,10 @@ export default function Payment() {
                       }}
                       type="date"
                       id="rent"
+                      value={inputted.startDate}
+                      onChange={(e) =>
+                        setInputted({ ...inputted, startDate: e.target.value })
+                      }
                       InputProps={{
                         endAdornment: (
                           <InputAdornment position="end">
@@ -218,6 +255,13 @@ export default function Payment() {
                         sx={{
                           width: "360px",
                         }}
+                        value={inputted.rentAmount}
+                        onChange={(e) =>
+                          setInputted({
+                            ...inputted,
+                            rentAmount: e.target.value,
+                          })
+                        }
                         label="Rent Agreement"
                         id="rent"
                         placeholder="₹ 22,450"
@@ -254,6 +298,13 @@ export default function Payment() {
                       sx={{
                         width: "360px",
                       }}
+                      value={inputted.refundableDeposit}
+                      onChange={(e) =>
+                        setInputted({
+                          ...inputted,
+                          refundableDeposit: e.target.value,
+                        })
+                      }
                       label="Refundable Deposit"
                       id="rent"
                       placeholder="Refundable Deposit"
@@ -268,6 +319,13 @@ export default function Payment() {
                         sx={{
                           width: "360px",
                         }}
+                        value={inputted.nonRefundableDeposit}
+                        onChange={(e) =>
+                          setInputted({
+                            ...inputted,
+                            nonRefundableDeposit: e.target.value,
+                          })
+                        }
                         label="Non Refundable Deposit"
                         id="rent"
                         placeholder="Non Refundable Deposit"
@@ -288,13 +346,36 @@ export default function Payment() {
                   </span>
                 </p>
                 <div className="toggentainer">
-                  <div className="toggler">1</div>
-                  <div className="toggler">2</div>
-                  <div className="toggler">3</div>
-                  <div className="toggler">
-                    <select>
-                      <option>other</option>
-                      <option>4</option>
+                  {["1", "2", "3"].map((val, index) => (
+                    <div
+                      onClick={() => {
+                        setInputted({ ...inputted, minimumLockInPeriod: val });
+                        const elem = document.querySelectorAll(".toggler-two");
+                        for (let i = 0; i < elem.length; i++) {
+                          elem[i].style.color = "black";
+                          elem[i].style.backgroundColor = "white";
+                        }
+                        elem[index].style.backgroundColor = "black";
+                        elem[index].style.color = "white";
+                      }}
+                      key={index}
+                      className="toggler-two"
+                    >
+                      {val}
+                    </div>
+                  ))}
+                  <div className="toggler-two">
+                    <select
+                      value={inputted.minimumLockInPeriod}
+                      onChange={(e) =>
+                        setInputted({
+                          ...inputted,
+                          minimumLockInPeriod: e.target.value,
+                        })
+                      }
+                    >
+                      <option value="other">other</option>
+                      <option value="4">4</option>
                     </select>
                   </div>
                 </div>
@@ -320,10 +401,27 @@ export default function Payment() {
                     <TextField
                       sx={{
                         width: "360px",
+                        marginRight: "20px",
                       }}
-                      label="Select Day"
+                      type="date"
                       id="rent"
-                      placeholder="Select Day"
+                      value={inputted.rentDay}
+                      onChange={(e) =>
+                        setInputted({ ...inputted, rentDay: e.target.value })
+                      }
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <CalendarMonthIcon
+                              sx={{
+                                fontSize: 27.47,
+                                color: "black",
+                                fontWeight: "700",
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </div>
                 </div>
@@ -344,6 +442,13 @@ export default function Payment() {
                         sx={{
                           width: "360px",
                         }}
+                        value={inputted.noticePeriod}
+                        onChange={(e) =>
+                          setInputted({
+                            ...inputted,
+                            noticePeriod: e.target.value,
+                          })
+                        }
                         label="How many months?"
                         id="rent"
                         placeholder="How many months?"
@@ -378,6 +483,13 @@ export default function Payment() {
                       sx={{
                         width: "740px",
                       }}
+                      value={inputted.miscellenous}
+                      onChange={(e) =>
+                        setInputted({
+                          ...inputted,
+                          miscellenous: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -390,7 +502,12 @@ export default function Payment() {
               </div>
               <div>
                 <button className="submitter-one">Add Clause</button>
-                <button className="submitter">Save and Continue</button>
+                <button
+                  onClick={() => console.log(inputted)}
+                  className="submitter"
+                >
+                  Save and Continue
+                </button>
               </div>
             </div>
           </div>
