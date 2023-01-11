@@ -139,17 +139,17 @@ export default function Home() {
                     value="tobnk"
                     checked
                   />
-                  <label for="tobnk">To Bank Account</label>
+                  <label htmlFor="tobnk">To Bank Account</label>
                 </div>
                 <div>
                   <input type="radio" id="toupi" name="toupi" value="toupi" />
-                  <label for="toupi">To UPI id</label>
+                  <label htmlFor="toupi">To UPI id</label>
                 </div>
               </div>
               <div className="numberer">
                 <p className="urgent-selector">Upload Rental Agreement</p>
                 <div>
-                  <label for="upload" className="label-for-img">
+                  <label htmlFor="upload" className="label-for-img">
                     <CloudUploadIcon
                       sx={{
                         color: "rgba(187, 187, 187, 1)",
