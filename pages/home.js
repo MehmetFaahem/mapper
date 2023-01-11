@@ -285,7 +285,8 @@ export default function Home() {
             </div>
             <div>
               <p className="noter">
-                Save your Payment details so you don't have to enter it again
+                Save your Payment details so you don&apos;t have to enter it
+                again
               </p>
             </div>
           </div>
