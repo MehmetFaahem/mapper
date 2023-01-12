@@ -1,39 +1,314 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-export default function Home() {
-  const [value, setValue] = useState();
+export const Header = () => {
   return (
-    <div className="home-container">
-      <div className="home-header">
-        <div>
-          <Image
-            src="https://i.ibb.co/0jGcqcN/prop-logo-only-01-1.png"
-            height="184"
-            width="261"
-            style={{
-              marginTop: "10px",
-            }}
-          />
-        </div>
-        <div className="home-header-contents">
-          <p>Rental Agreement</p>
-          <h3>Rent Payment</h3>
-          <h4>Post AD</h4>
-          <AccountCircleIcon
-            sx={{
-              color: "black",
-              height: "33px",
-              width: "33px",
-              marginLeft: "30px",
-            }}
-          />
+    <div className="home-header">
+      <div>
+        <Image
+          src="https://i.ibb.co/0jGcqcN/prop-logo-only-01-1.png"
+          height="184"
+          width="261"
+          style={{
+            marginTop: "10px",
+          }}
+        />
+      </div>
+      <div className="ti-subti">
+        <h1>Payment</h1>
+        <h2>Make Payment of your properties here</h2>
+      </div>
+      <div className="home-header-contents">
+        <p>Post AD</p>
+        <h3>LOGIN</h3>
+        <MenuIcon
+          sx={{
+            color: "black",
+            height: "33px",
+            width: "33px",
+            marginLeft: "30px",
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default function Home() {
+  const [category, setCategory] = useState("");
+  const [value, setValue] = useState();
+
+  const [mode, setMode] = useState("tobnk");
+
+  if (category == "Property Token" || category == "Property Deposit") {
+    return (
+      <div className="home-container">
+        <Header />
+        <div className="imager-container">
+          <div>
+            <Image
+              src="https://i.ibb.co/dQT8hFF/unsplash-Q59-Hmz-K38e-Q.png"
+              width="735"
+              height="855"
+            />
+          </div>
+          <div className="all-selectors">
+            <div>
+              <p className="urgent-selector">
+                Select Payment{" "}
+                <span
+                  style={{
+                    color: "red",
+                  }}
+                >
+                  *
+                </span>
+              </p>
+              <div>
+                <select
+                  className="cat-selector"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  {[
+                    "House Rent",
+                    "Society Maintenance",
+                    "Office/Shop Rent",
+                    "Property Token",
+                    "Property Deposit",
+                  ].map((val, index) => (
+                    <option
+                      onClick={() => {
+                        document.querySelector(
+                          ".cat-selector"
+                        ).style.fontWeight = "700";
+
+                        for (let index = 0; index < 5; index++) {
+                          document.querySelectorAll(".cat-opt")[
+                            index
+                          ].style.fontWeight = "300";
+                        }
+                      }}
+                      className="cat-opt"
+                      key={index}
+                    >
+                      {val}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flexer">
+                <div>
+                  <p className="urgent-selector">
+                    Landlord Name (As Per bank records){" "}
+                    <span
+                      style={{
+                        color: "red",
+                      }}
+                    >
+                      *
+                    </span>
+                  </p>
+                  <div>
+                    <input className="inputter-payer" />
+                  </div>
+                </div>
+                <div className="numberer">
+                  <p className="urgent-selector">
+                    Landlord Number{" "}
+                    <span
+                      style={{
+                        color: "red",
+                      }}
+                    >
+                      *
+                    </span>
+                  </p>
+                  <div>
+                    <PhoneInput
+                      placeholder=""
+                      value={value}
+                      onChange={setValue}
+                      defaultCountry="IN"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="flexer">
+                <div>
+                  <p className="urgent-selector">
+                    Choose Payment Mode{" "}
+                    <span
+                      style={{
+                        color: "red",
+                      }}
+                    >
+                      *
+                    </span>
+                  </p>
+                  <div className="padder">
+                    <input
+                      type="radio"
+                      id="tobnk"
+                      name="tobnk"
+                      value="tobnk"
+                      checked={mode == "tobnk"}
+                      onChange={(e) => setMode(e.target.value)}
+                    />
+                    <label htmlFor="tobnk">To Bank Account</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="toupi"
+                      name="toupi"
+                      value="toupi"
+                      checked={mode == "toupi"}
+                      onChange={(e) => setMode(e.target.value)}
+                    />
+                    <label htmlFor="toupi">To UPI id</label>
+                  </div>
+                </div>
+                <div className="numberer">
+                  <p className="urgent-selector">
+                    Property Address
+                    <span
+                      style={{
+                        color: "red",
+                      }}
+                    >
+                      *
+                    </span>
+                  </p>
+                  <div>
+                    <input className="inputter-payer" />
+                  </div>
+                </div>
+              </div>
+              {mode == "tobnk" ? (
+                <div className="flexer">
+                  <div>
+                    <p className="urgent-selector">
+                      Bank Account Number{" "}
+                      <span
+                        style={{
+                          color: "red",
+                        }}
+                      >
+                        *
+                      </span>
+                    </p>
+                    <div>
+                      <input className="inputter-payer" />
+                    </div>
+                  </div>
+                  <div className="numberer">
+                    <p className="urgent-selector">
+                      Confirm Account Number{" "}
+                      <span
+                        style={{
+                          color: "red",
+                        }}
+                      >
+                        *
+                      </span>
+                    </p>
+                    <div>
+                      <input className="inputter-payer" />
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+              <div className="flexer">
+                <div>
+                  <p className="urgent-selector">
+                    {mode == "tobnk" ? "IFSC code" : "Enter UPI Id "}{" "}
+                    <span
+                      style={{
+                        color: "red",
+                      }}
+                    >
+                      *
+                    </span>
+                  </p>
+                  <div>
+                    <input className="inputter-payer" />
+                  </div>
+                </div>
+                <div className="numberer">
+                  <p className="urgent-selector">
+                    Tenant&apos;s PAN{" "}
+                    {mode == "toupi" ? (
+                      <span
+                        style={{
+                          color: "red",
+                        }}
+                      >
+                        *
+                      </span>
+                    ) : null}
+                  </p>
+                  <div>
+                    <input className="inputter-payer" />
+                  </div>
+                </div>
+              </div>
+              <div className="flexer">
+                <div>
+                  <p className="urgent-selector">
+                    Token Amount{" "}
+                    <span
+                      style={{
+                        color: "red",
+                      }}
+                    >
+                      *
+                    </span>
+                  </p>
+                  <div>
+                    <input className="inputter-payer" />
+                  </div>
+                </div>
+                <div className="numberer">
+                  <p className="urgent-selector">
+                    Beneficiary&apos;s PAN{" "}
+                    <span
+                      style={{
+                        color: "red",
+                      }}
+                    >
+                      *
+                    </span>
+                  </p>
+                  <div>
+                    <input className="inputter-payer" />
+                  </div>
+                </div>
+              </div>
+              <div className="ender">
+                <button className="end-buttons">Save Payment Details</button>
+                <button className="end-buttons-two">Continue</button>
+              </div>
+              <div>
+                <p className="noter">
+                  Save your Payment details so you don&apos;t have to enter it
+                  again
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="home-container">
+      <Header />
       <div className="imager-container">
         <div>
           <Image
@@ -55,7 +330,11 @@ export default function Home() {
               </span>
             </p>
             <div>
-              <select className="cat-selector">
+              <select
+                className="cat-selector"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
                 {[
                   "House Rent",
                   "Society Maintenance",
