@@ -564,6 +564,48 @@ a {
       border: none;
     }
   }
+  .reciept-svg {
+    width: 96px;
+    height: 92px;
+    margin-top: 125px;
+  }
+  .reciept-ready-text {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16.2114px;
+    margin-top: 72px;
+  }
+  .reciept-ready-desc {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+
+    span {
+      font-weight: 700;
+    }
+  }
+  .button-container-reciept {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 46px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 9.90634px;
+    .edit-button {
+      width: 202px;
+      height: 42px;
+      background-color: white;
+      color: black;
+    }
+    .download-button {
+      width: 202px;
+      height: 42px;
+      background-color: black;
+      color: white;
+      margin-top: 10px;
+    }
+  }
 }
 
 @media only screen and (min-width: 780px) {
@@ -772,5 +814,50 @@ a {
     @include end-things;
     background-color: #000000;
     color: white;
+  }
+
+  .reciept-svg {
+    width: 200px;
+    height: 192px;
+    margin-top: 88px;
+  }
+
+  .reciept-ready-text {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    margin-top: 43px;
+  }
+  .reciept-ready-desc {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+
+    span {
+      font-weight: 700;
+    }
+  }
+  .button-container-reciept {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 56px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 9.90634px;
+    .edit-button {
+      width: 300px;
+      height: 60px;
+      background-color: white;
+      color: black;
+    }
+    .download-button {
+      width: 300px;
+      height: 60px;
+      background-color: black;
+      color: white;
+      margin-left: 25px;
+      margin-top: 0px;
+    }
   }
 }

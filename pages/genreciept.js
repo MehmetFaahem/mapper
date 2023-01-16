@@ -52,7 +52,7 @@ export default function GenReciept() {
       <div className="imager-container">
         <div>
           <Image
-            src="https://i.ibb.co/dQT8hFF/unsplash-Q59-Hmz-K38e-Q.png"
+            src="https://i.ibb.co/SfNqPZQ/unsplash-Q59-Hmz-K38e-Q-2.png"
             width="735"
             height="855"
             className="imagers"
